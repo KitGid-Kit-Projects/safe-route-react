@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Card, Typography, message, Space } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
@@ -15,10 +15,6 @@ const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  // Get the intended destination from router state, or default to home
-  const from = location.state?.from?.pathname || '/home';
 
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true);
@@ -28,7 +24,7 @@ const Login: React.FC = () => {
       
       if (success) {
         message.success('Login successful! Welcome back.');
-        navigate(from, { replace: true });
+        navigate('/home', { replace: true });
       } else {
         message.error('Login failed. Please check your credentials.');
       }
