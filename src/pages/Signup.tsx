@@ -1,41 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Input, Button, Card, Typography, message, Space } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, UserAddOutlined } from '@ant-design/icons';
-import { useAuth } from '../context/AuthContext';
 
 const { Title, Text } = Typography;
 
-interface SignupFormValues {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
 
 const Signup: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const { signup } = useAuth();
-  const navigate = useNavigate();
 
-  const onFinish = async (values: SignupFormValues) => {
-    setLoading(true);
-    
-    try {
-      const success = await signup(values.email, values.password, values.name);
-      
-      if (success) {
-        message.success('Account created successfully! Welcome to our platform.');
-        navigate('/home', { replace: true });
-      } else {
-        message.error('Signup failed. Please try again.');
-      }
-    } catch (error) {
-      message.error('An error occurred during signup.');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center p-4">
@@ -56,7 +28,7 @@ const Signup: React.FC = () => {
 
         <Form
           name="signup"
-          onFinish={onFinish}
+          // onFinish={onFinish}
           layout="vertical"
           size="large"
           autoComplete="off"
@@ -133,14 +105,14 @@ const Signup: React.FC = () => {
             <Button
               type="primary"
               htmlType="submit"
-              loading={loading}
+              // loading={loading}
               className="w-full h-12 text-lg font-medium rounded-lg"
               style={{
                 background: 'linear-gradient(135deg, #8b5cf6, #ec4899)',
                 border: 'none'
               }}
             >
-              {loading ? 'Creating Account...' : 'Create Account'}
+              { 'Create Account'}
             </Button>
           </Form.Item>
 

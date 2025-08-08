@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Card, Typography, message, Space } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
-import { useAuth } from '../context/AuthContext';
+
 
 const { Title, Text } = Typography;
 
@@ -12,28 +12,7 @@ interface LoginFormValues {
 }
 
 const Login: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
-  const navigate = useNavigate();
 
-  const onFinish = async (values: LoginFormValues) => {
-    setLoading(true);
-    
-    try {
-      const success = await login(values.email, values.password);
-      
-      if (success) {
-        message.success('Login successful! Welcome back.');
-        navigate('/home', { replace: true });
-      } else {
-        message.error('Login failed. Please check your credentials.');
-      }
-    } catch (error) {
-      message.error('An error occurred during login.');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
@@ -54,7 +33,7 @@ const Login: React.FC = () => {
 
         <Form
           name="login"
-          onFinish={onFinish}
+          // onFinish={onFinish}
           layout="vertical"
           size="large"
           autoComplete="off"
@@ -90,14 +69,14 @@ const Login: React.FC = () => {
             <Button
               type="primary"
               htmlType="submit"
-              loading={loading}
+              // loading={loading}
               className="w-full h-12 text-lg font-medium rounded-lg"
               style={{
                 background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
                 border: 'none'
               }}
             >
-              {loading ? 'Signing In...' : 'Sign In'}
+              { 'Sign In'}
             </Button>
           </Form.Item>
 
